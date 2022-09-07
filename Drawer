@@ -1,0 +1,71 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/config.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+
+class Drower extends StatelessWidget {
+  const Drower({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ZoomDrawer(
+          borderRadius: 24.0,
+          showShadow: true,
+          angle: -12.0,
+          drawerShadowsBackgroundColor: Colors.grey.shade300,
+          slideWidth: MediaQuery.of(context).size.width * 0.65,
+          menuScreen: MenuPage(),
+          mainScreen: MainPage()),
+    );
+  }
+}
+
+class MenuPage extends StatelessWidget {
+  const MenuPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.indigo,
+      body: Column(
+        children: [
+          ListTile(
+            title: Text('hello'),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MainPage extends StatelessWidget {
+  const MainPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        leading: ManuWiget(),
+        title: Text(
+          'Game App',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+    );
+  }
+}
+
+class ManuWiget extends StatelessWidget {
+  const ManuWiget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          ZoomDrawer.of(context)!.toggle();
+        },
+        icon: Icon(Icons.menu));
+  }
+}
